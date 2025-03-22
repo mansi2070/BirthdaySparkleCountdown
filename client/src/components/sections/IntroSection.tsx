@@ -16,7 +16,7 @@ const IntroSection = forwardRef<HTMLDivElement, IntroSectionProps>((props, ref) 
       <div className="text-center px-6 z-10 max-w-4xl">
         <h1 className="text-4xl md:text-6xl font-dancing font-bold text-primary">
           <TypewriterEffect 
-            text="Happy Birthday, my love! 🎉💖" 
+            text="HAPPIEE BIRTHDAY RISHU! 🎉💖" 
             speed={150}
             onComplete={() => {
               // Fade in intro text after typing is complete
