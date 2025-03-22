@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface Heart {
   id: number;
@@ -8,50 +8,93 @@ interface Heart {
   delay: number;
   opacity: number;
   emoji: string;
+  duration: number;
+  rotation: number;
 }
 
 interface FloatingHeartsProps {
   count?: number;
   emojis?: string[];
+  animated?: boolean;
+  spread?: 'full' | 'top' | 'bottom';
 }
 
 const FloatingHearts: React.FC<FloatingHeartsProps> = ({ 
-  count = 7, 
-  emojis = ['❤️', '💖', '💗', '💘', '💝'] 
+  count = 15, 
+  emojis = ['❤️', '💖', '💗', '💘', '💝', '💕', '💓', '💞'],
+  animated = false,
+  spread = 'full'
 }) => {
+  const [hearts, setHearts] = useState<Heart[]>([]);
+  
   // Generate random hearts
-  const generateHearts = (): Heart[] => {
-    const hearts: Heart[] = [];
-    for (let i = 0; i < count; i++) {
-      hearts.push({
-        id: i,
-        x: Math.random() * 90 + 5, // 5-95%
-        y: Math.random() * 90 + 5, // 5-95%
-        size: [`text-2xl`, `text-3xl`, `text-4xl`, `text-5xl`][Math.floor(Math.random() * 4)],
-        delay: Math.random() * 3,
-        opacity: Math.random() * 0.2 + 0.1, // 0.1-0.3
-        emoji: emojis[Math.floor(Math.random() * emojis.length)]
-      });
-    }
-    return hearts;
-  };
+  useEffect(() => {
+    const generateHearts = (): Heart[] => {
+      const heartsArray: Heart[] = [];
+      for (let i = 0; i < count; i++) {
+        // Determine y position based on spread type
+        let yPos: number;
+        if (spread === 'top') {
+          yPos = Math.random() * 40; // 0-40%
+        } else if (spread === 'bottom') {
+          yPos = Math.random() * 40 + 60; // 60-100%
+        } else {
+          yPos = Math.random() * 90 + 5; // 5-95%
+        }
+        
+        heartsArray.push({
+          id: Date.now() + i,
+          x: Math.random() * 90 + 5, // 5-95%
+          y: yPos,
+          size: [`text-xl`, `text-2xl`, `text-3xl`, `text-4xl`][Math.floor(Math.random() * 4)],
+          delay: Math.random() * 5,
+          duration: Math.random() * 6 + 6, // 6-12s
+          opacity: Math.random() * 0.6 + 0.4, // 0.4-1.0
+          emoji: emojis[Math.floor(Math.random() * emojis.length)],
+          rotation: Math.random() * 45 - 22.5 // -22.5 to 22.5 degrees
+        });
+      }
+      return heartsArray;
+    };
 
-  const hearts = generateHearts();
+    setHearts(generateHearts());
+    
+    // If animated, regenerate hearts periodically
+    if (animated) {
+      const interval = setInterval(() => {
+        setHearts(generateHearts());
+      }, 8000);
+      
+      return () => clearInterval(interval);
+    }
+  }, [count, emojis, animated, spread]);
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
       {hearts.map((heart) => (
         <div
           key={heart.id}
-          className={`heart absolute ${heart.size} text-primary/30 animate-float`}
+          className={`heart absolute ${heart.size} transition-all duration-1000`}
           style={{
             left: `${heart.x}%`,
             top: `${heart.y}%`,
+            opacity: heart.opacity,
+            animation: `float ${heart.duration}s ease-in-out infinite`,
             animationDelay: `${heart.delay}s`,
-            opacity: heart.opacity
+            transform: `rotate(${heart.rotation}deg)`
           }}
         >
-          {heart.emoji}
+          <div className="relative inline-block">
+            {heart.emoji}
+            
+            {/* Add subtle pulse effect to some hearts */}
+            {Math.random() > 0.7 && (
+              <div 
+                className="absolute inset-0 bg-pink-300 rounded-full opacity-20 animate-ping"
+                style={{animationDuration: `${Math.random() * 3 + 2}s`}}
+              ></div>
+            )}
+          </div>
         </div>
       ))}
     </div>
