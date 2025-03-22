@@ -172,3 +172,103 @@
   40% {transform: translateY(-20px);}
   60% {transform: translateY(-10px);}
 }
+
+/* Celebration animations */
+:root {
+  --celebration-color-1: rgba(255, 105, 180, 0.1);
+  --celebration-color-2: rgba(255, 223, 0, 0.1);
+}
+
+.celebration-mode {
+  animation: celebration-pulse 4s infinite;
+}
+
+@keyframes celebration-pulse {
+  0%, 100% { background-color: rgba(255, 255, 255, 0.95); }
+  50% { background-color: rgba(255, 240, 245, 0.95); }
+}
+
+.celebration-bg-1 {
+  background: radial-gradient(circle, var(--celebration-color-1) 0%, transparent 70%);
+  animation: celebration-bg-1 15s infinite alternate;
+}
+
+.celebration-bg-2 {
+  background: radial-gradient(circle, var(--celebration-color-2) 0%, transparent 70%);
+  animation: celebration-bg-2 10s infinite alternate-reverse;
+}
+
+@keyframes celebration-bg-1 {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(50%, 50%) scale(1.5); }
+}
+
+@keyframes celebration-bg-2 {
+  0% { transform: translate(50%, 50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1.8); }
+}
+
+.celebration-bottom-burst {
+  background: linear-gradient(to top, rgba(255, 182, 193, 0.3), transparent);
+  animation: celebration-bottom-burst 3s infinite;
+}
+
+@keyframes celebration-bottom-burst {
+  0%, 100% { height: 100px; opacity: 0.5; }
+  50% { height: 150px; opacity: 0.7; }
+}
+
+/* Celebration heart animation */
+.heart-float {
+  position: absolute;
+  animation: heart-float-animation var(--duration, 15s) infinite ease-in-out;
+  opacity: var(--opacity, 0.8);
+  font-size: var(--size, 24px);
+  z-index: 10;
+  pointer-events: none;
+  transform-origin: center;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes heart-float-animation {
+  0% {
+    transform: translateY(100vh) translateX(0) rotate(0deg) scale(1);
+    opacity: var(--opacity, 0.8);
+  }
+  25% {
+    transform: translateY(75vh) translateX(calc(var(--direction, 1) * 100px)) rotate(calc(var(--direction, 1) * 20deg)) scale(1.1);
+  }
+  50% {
+    transform: translateY(50vh) translateX(0) rotate(calc(var(--direction, 1) * -20deg)) scale(1);
+  }
+  75% {
+    transform: translateY(25vh) translateX(calc(var(--direction, 1) * -100px)) rotate(calc(var(--direction, 1) * 20deg)) scale(0.9);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(calc(var(--direction, 1) * -20deg)) scale(1);
+    opacity: 0;
+  }
+}
+
+/* 10-second countdown specific styling */
+.countdown-number {
+  position: relative;
+  animation: countdown-pulse 1s infinite;
+  transform-origin: center;
+}
+
+.countdown-final {
+  animation: countdown-final 1s infinite;
+  font-size: 3em;
+  color: #ff4081;
+}
+
+@keyframes countdown-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes countdown-final {
+  0%, 100% { transform: scale(1); color: #ff4081; }
+  50% { transform: scale(1.3); color: #f50057; }
+}

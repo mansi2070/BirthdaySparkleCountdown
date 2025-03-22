@@ -13,6 +13,8 @@ import JarSection from "@/components/sections/JarSection";
 import Navigation from "@/components/ui/Navigation";
 import MobileMenu from "@/components/ui/MobileMenu";
 import Confetti from "@/components/ui/Confetti";
+import FloatingHearts from "@/components/ui/FloatingHearts";
+import SparkleEffect from "@/components/ui/SparkleEffect";
 
 function BirthdaySurprise() {
   const [location, setLocation] = useLocation();
@@ -28,6 +30,19 @@ function BirthdaySurprise() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("intro");
   const [showInitialConfetti, setShowInitialConfetti] = useState(false);
+  const [showBackgroundHearts, setShowBackgroundHearts] = useState(true);
+  const [countdownFinished, setCountdownFinished] = useState(false);
+  const [globalCelebration, setGlobalCelebration] = useState(false);
+
+  // Handler for when countdown completes
+  const handleCountdownComplete = () => {
+    setCountdownFinished(true);
+    setGlobalCelebration(true);
+    setShowInitialConfetti(true);
+    
+    // Add more celebration effects across the page
+    document.body.classList.add('celebration-mode');
+  };
 
   useEffect(() => {
     // Trigger initial confetti after a short delay
@@ -72,6 +87,19 @@ function BirthdaySurprise() {
 
   return (
     <div className="font-body text-dark">
+      {/* Background Effects */}
+      <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
+        {/* Floating hearts background - always visible */}
+        {showBackgroundHearts && (
+          <FloatingHearts 
+            count={25} 
+            emojis={['💖', '💗', '💓', '💘', '💝']} 
+            animated={true}
+            spread="full"
+          />
+        )}
+      </div>
+      
       {/* Confetti Container */}
       <Confetti active={showInitialConfetti} />
       
@@ -90,11 +118,19 @@ function BirthdaySurprise() {
       
       {/* Main Content Sections */}
       <IntroSection ref={sectionRefs.intro} />
-      <CountdownSection ref={sectionRefs.countdown} />
+      <CountdownSection 
+        ref={sectionRefs.countdown} 
+        onCountdownComplete={handleCountdownComplete}
+      />
       <MessageSection1 ref={sectionRefs.message1} />
       <MessageSection2 ref={sectionRefs.message2} />
       <MessageSection3 ref={sectionRefs.message3} />
       <JarSection ref={sectionRefs.jar} />
+      
+      {/* Sparkle effect at the bottom of the page */}
+      <div className="fixed bottom-0 left-0 right-0 h-20 pointer-events-none z-20">
+        <SparkleEffect active={true} frequency={15} duration={3} />
+      </div>
     </div>
   );
 }
