@@ -30,7 +30,7 @@ function BirthdaySurprise() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("intro");
   const [showInitialConfetti, setShowInitialConfetti] = useState(false);
-  const [showBackgroundHearts, setShowBackgroundHearts] = useState(true);
+  const [showBackgroundHearts, setShowBackgroundHearts] = useState(false); // Set to false to remove hearts
   const [countdownFinished, setCountdownFinished] = useState(false);
   const [globalCelebration, setGlobalCelebration] = useState(false);
 

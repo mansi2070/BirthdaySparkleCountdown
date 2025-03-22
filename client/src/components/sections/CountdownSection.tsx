@@ -3,7 +3,6 @@ import CountdownTimer from '@/components/ui/CountdownTimer';
 import CakeAnimation from '@/components/ui/CakeAnimation';
 import Confetti from '@/components/ui/Confetti';
 import EmojiBurst from '@/components/ui/EmojiBurst';
-import FloatingHearts from '@/components/ui/FloatingHearts';
 import SparkleEffect from '@/components/ui/SparkleEffect';
 import { getBirthdayDate } from '@/lib/birthdayUtils';
 
@@ -15,7 +14,6 @@ const CountdownSection = forwardRef<HTMLDivElement, CountdownSectionProps>(({ on
   // Celebration states
   const [showConfetti, setShowConfetti] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
-  const [showHearts, setShowHearts] = useState(false);
   const [showSparkles, setShowSparkles] = useState(false);
   const [celebrationText, setCelebrationText] = useState(false);
   const [celebrationMode, setCelebrationMode] = useState(false);
@@ -34,7 +32,6 @@ const CountdownSection = forwardRef<HTMLDivElement, CountdownSectionProps>(({ on
       { effect: 'firstWave', delay: 0 },
       { effect: 'sparkles', delay: 300 },
       { effect: 'emojis', delay: 500 },
-      { effect: 'hearts', delay: 800 },
       { effect: 'text', delay: 1000 },
       { effect: 'secondWaveConfetti', delay: 2000 },
       { effect: 'thirdWaveEmojis', delay: 3000 },
@@ -53,9 +50,6 @@ const CountdownSection = forwardRef<HTMLDivElement, CountdownSectionProps>(({ on
             break;
           case 'emojis':
             setShowEmojis(true);
-            break;
-          case 'hearts':
-            setShowHearts(true);
             break;
           case 'text':
             setCelebrationText(true);
@@ -235,17 +229,6 @@ const CountdownSection = forwardRef<HTMLDivElement, CountdownSectionProps>(({ on
             trigger="auto"
             autoTriggerDelay={400}
             containerClassName="absolute bottom-1/3 right-1/4"
-          />
-        </div>
-      )}
-      
-      {/* Floating hearts */}
-      {showHearts && (
-        <div className="absolute inset-0 pointer-events-none z-10">
-          <FloatingHearts 
-            count={25} 
-            emojis={['💖', '💓', '💕', '💗', '💘', '💝', '💞']} 
-            animated={true}
           />
         </div>
       )}
