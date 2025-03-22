@@ -25,8 +25,8 @@ const CakeAnimation: React.FC<CakeAnimationProps> = ({ onCut }) => {
   };
 
   return (
-    <div className="mt-8 mb-12 relative">
-      <div className="w-80 h-80 mx-auto relative">
+    <div className="mt-8 mb-20 relative">
+      <div className="w-80 h-64 mx-auto relative">
         {/* Cake plate */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-64 h-4 bg-gray-100 rounded-full shadow-md z-10"></div>
         

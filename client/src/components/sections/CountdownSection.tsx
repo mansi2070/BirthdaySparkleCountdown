@@ -136,16 +136,6 @@ const CountdownSection = forwardRef<HTMLDivElement, CountdownSectionProps>(({ on
             <p className="text-lg md:text-2xl">
               Today is your special day! Time to celebrate!
             </p>
-            
-            <div className="mt-5">
-              <button 
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="px-6 py-3 bg-gradient-to-r from-pink-500 to-pink-400 text-white rounded-full 
-                  shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer"
-              >
-                Celebrate Again! 🎉
-              </button>
-            </div>
           </div>
         )}
         
