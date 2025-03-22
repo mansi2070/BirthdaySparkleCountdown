@@ -128,17 +128,6 @@ const CountdownSection = forwardRef<HTMLDivElement, CountdownSectionProps>(({ on
         {/* Cake Animation */}
         <CakeAnimation onCut={handleCakeCut} />
         
-        {celebrationText && (
-          <div className="mt-8 celebration-text animate-pulse-slow">
-            <h3 className="text-2xl md:text-5xl font-dancing text-primary mb-3 transition-all duration-1000">
-              💖 Happy Birthday! 💖
-            </h3>
-            <p className="text-lg md:text-2xl">
-              Today is your special day! Time to celebrate!
-            </p>
-          </div>
-        )}
-        
         {!celebrationText && (
           <p className="mt-8 text-lg">Let's make this year's celebration the most special one yet!</p>
         )}
