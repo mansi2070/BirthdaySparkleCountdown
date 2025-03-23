@@ -12,7 +12,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToSection 
     { id: 'message1', label: 'Message 1' },
     { id: 'message2', label: 'Message 2' },
     { id: 'message3', label: 'Message 3' },
-    { id: 'jar', label: 'Special Note' }
+    { id: 'jar', label: 'Special Note' },
+    { id: 'apology', label: 'Apology' }
   ];
 
   return (
