@@ -10,9 +10,9 @@ const JarSection = forwardRef<HTMLDivElement, JarSectionProps>((props, ref) => {
   const [showConfetti, setShowConfetti] = useState(false);
   const specialNote = `I'm sorry...
   
-For not being enough for you.
-For stressing you out.
-For putting extra pain on you when you already hurting because of me.
+I'm sorry for not being enough for you.
+I'm sorry for stressing you out.
+I'm sorry for putting extra pain on you when you already hurting because of me.
 For overthinking so much.
 For not being able to treat you right.
 For not being the best.
