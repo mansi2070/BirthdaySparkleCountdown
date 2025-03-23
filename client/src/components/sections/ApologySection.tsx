@@ -20,21 +20,14 @@ const ApologySection = forwardRef<HTMLDivElement, ApologySectionProps>((props, r
         <div className="space-y-8">
           <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg">
             <p className="text-lg leading-relaxed">
-              I'm sorry for not being enough for you. I'm sorry for stressing you out. 
-              I'm sorry for putting extra pain on you when you were already hurting because of me.
-            </p>
-          </div>
-
-          <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg">
-            <p className="text-lg leading-relaxed">
-              I'm sorry for overthinking so much. I'm sorry I can't treat you right. 
-              I'm sorry for not being the best.
-            </p>
-          </div>
-
-          <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg">
-            <p className="text-lg leading-relaxed">
+              I'm sorry I can't treat you right. I'm sorry for not being the best. 
               I'm sorry for hurting you. I'm sorry for everything.
+            </p>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg">
+            <p className="text-lg leading-relaxed">
+              I just felt comforted around you. Nobody ever made me feel wanted like you did.
             </p>
           </div>
 
