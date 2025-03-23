@@ -8,7 +8,7 @@ interface JarSectionProps {
 
 const JarSection = forwardRef<HTMLDivElement, JarSectionProps>((props, ref) => {
   const [showConfetti, setShowConfetti] = useState(false);
-  const specialNote = `Click to reveal a special message...`;
+  const specialNote = `I'm sorry for not being enough for you. I'm sorry for stressing you out. I'm sorry for putting extra pain on you when you already hurting because of me. I'm sorry for overthinking so much. I'm sorry I can't treat you right.`;
 
   const handleJarOpen = () => {
     setShowConfetti(true);
